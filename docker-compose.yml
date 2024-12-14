@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: ./my-portfolio
+    ports:
+      - "5173:5173" # Development server port for frontend
+      - "5000:5000" # Production port (if applicable)
+    volumes:
+      - ./my-portfolio:/app
+    command: ["npm", "run", "dev"] # Development mode
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5001:5001" # Backend port
+    volumes:
+      - ./backend:/app
+    command: ["python", "app.py"]
